@@ -1,7 +1,10 @@
 import { api } from "@/lib/api/client";
-import { IRequestParams } from "@/types/api";
-import { LoginForm } from "./schemas";
+import { ENDPOINTS, Login, Sesion } from "./schemas";
 
-export function login(params?: IRequestParams) {
-  return api.get<LoginForm>("pos/cliente/buscar-cliente.json");
+export function login(creds: Login) {
+  return api.post<Sesion>(ENDPOINTS.LOGIN, creds);
+}
+
+export function logout() {
+  return api.post(ENDPOINTS.LOGOUT);
 }

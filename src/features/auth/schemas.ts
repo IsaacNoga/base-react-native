@@ -1,15 +1,29 @@
 import { z } from "zod";
 
-export const registroForm = z.object({
-  nombre: z.string().min(2, "Ingrese un nombre válido"),
-  correo: z.string().email("Ingrese un correo válido").min(5),
-  telefono: z.string().min(10, "Al menos 10 caracteres").max(10),
+export const ENDPOINTS = {
+  LOGIN: "/v1/iniciar-sesion.json",
+  LOGOUT: "/v1/cerrar-sesion.json",
+};
+
+export const login = z.object({
+  correo: z.string().email("Ingrese un correo válido"),
+  clave: z.string().min(4, "Al menos 4 caracteres"),
 });
 
-export const loginForm = z.object({
-  correo: z.string().email("Ingrese un correo válido").min(5),
-  telefono: z.string().min(10, "Al menos 10 caracteres").max(10),
+export const user = z.object({
+  nombre: z.string(),
+  apellidos: z.string(),
+  correo: z.string().email("Ingrese un correo válido"),
+  estatus: z.number(),
+  token: z.string(),
+  telefono: z.string(),
+  alias: z.string(),
+  foto: z.string(),
+  rol: z.string(),
+  perfil: z.string(),
+  usuario: z.string(),
+  numEconomico: z.string(),
 });
 
-export type RegistroForm = z.infer<typeof registroForm>;
-export type LoginForm = z.infer<typeof loginForm>;
+export type Login = z.infer<typeof login>;
+export type User = z.infer<typeof user>;
