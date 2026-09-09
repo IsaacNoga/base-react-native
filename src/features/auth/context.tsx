@@ -8,12 +8,12 @@ import {
 } from "react";
 import { logout as apiLogout } from "./api";
 import { useLogin } from "./mutations";
-import type { Login } from "./schemas";
+import type { Login, User } from "./schemas";
 
 interface AuthState {
   isLoading: boolean;
   isAuthenticated: boolean;
-  user: unknown | null;
+  user: User | null;
   login(creds: Login): Promise<void>;
   logout(): Promise<void>;
 }
@@ -23,12 +23,13 @@ const AuthContext = createContext<AuthState | undefined>(undefined);
 export function AuthProvider({ children }: PropsWithChildren) {
   const loginMutation = useLogin();
   const [isLoading, setIsLoading] = useState(true);
-  const [user, setUser] = useState<unknown | null>(null);
+  const [user, setUser] = useState<User | null>(null);
 
   const login = async (creds: Login) => {
     const res = await loginMutation.mutateAsync(creds);
-    await authStorage.setSession(res.token, res.user);
-    setUser(res.user);
+    const user = res.detalle as unknown as User;
+    await authStorage.setSession(user.token, user);
+    setUser(user);
   };
 
   const logout = async () => {

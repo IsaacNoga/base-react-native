@@ -1,12 +1,12 @@
 import { z } from "zod";
 
 export const ENDPOINTS = {
-  LOGIN: "/v1/iniciar-sesion.json",
-  LOGOUT: "/v1/cerrar-sesion.json",
+  LOGIN: "v1/iniciar-sesion.json",
+  LOGOUT: "v1/cerrar-sesion.json",
 };
 
 export const login = z.object({
-  correo: z.string().email("Ingrese un correo válido"),
+  usuario: z.string().email("Ingrese un correo válido"),
   clave: z.string().min(4, "Al menos 4 caracteres"),
 });
 

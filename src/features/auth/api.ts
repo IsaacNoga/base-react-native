@@ -1,8 +1,8 @@
 import { api } from "@/lib/api/client";
-import { ENDPOINTS, Login, Sesion } from "./schemas";
+import { ENDPOINTS, Login, User } from "./schemas";
 
 export function login(creds: Login) {
-  return api.post<Sesion>(ENDPOINTS.LOGIN, creds);
+  return api.post<User>(ENDPOINTS.LOGIN, creds);
 }
 
 export function logout() {

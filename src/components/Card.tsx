@@ -1,4 +1,4 @@
-import { View } from "lucide-react-native";
+import { View } from "react-native";
 
 interface ICard {
   children: React.ReactNode;

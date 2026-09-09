@@ -18,7 +18,7 @@ const typeClass: Record<buttonTypes, any> = {
       "text-neutral-800 font-medium text-center group-active:text-blue-500 transition-all ease-in-out duration-150",
   },
   primary: {
-    root: "border border-teal-500 rounded-lg w-full bg-teal-400 group active:bg-teal-600 active:border-teal-600",
+    root: "border border-neutral-500 rounded-lg w-full bg-neutral-400 group active:bg-neutral-600 active:border-neutral-600",
     child:
       "text-white font-medium text-center transition-all ease-in-out duration-150",
   },

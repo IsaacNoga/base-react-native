@@ -28,19 +28,28 @@ function FormItem<T extends FieldValues>({
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <View className="mb-4">
+        <View className="mb-4 w-full">
           {label && (
-            <Text className="mb-1 font-medium text-neutral-800">
-              {label}
-              {required && <Text className="text-red-500"> *</Text>}
-            </Text>
+            <View className="flex flex-row justify-between w-full">
+              <Text className="mb-1 font-medium text-neutral-800">
+                {label}
+                {required && <Text className="text-red-500"> *</Text>}
+              </Text>
+              <Text
+                className={
+                  error
+                    ? "h-full transition-all opacity-100 duration-300 font-semibold ease-in-out text-red-500 translate-y-1"
+                    : "h-0 transition-all opacity-0 duration-300 font-semibold ease-in-out text-red-500"
+                }
+              >
+                {error?.message ?? " "}
+              </Text>
+            </View>
           )}
 
           {render(field)}
 
-          {error ? (
-            <Text className="mt-1 text-xs text-red-500">{error.message}</Text>
-          ) : hint ? (
+          {hint ? (
             <Text className="mt-1 text-xs text-neutral-400">{hint}</Text>
           ) : null}
         </View>

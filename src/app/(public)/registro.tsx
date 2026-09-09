@@ -11,12 +11,6 @@ export default function RegistroScreen() {
 
   return (
     <View className="flex-1 justify-center items-center h-full gap-4 p-4">
-      <Image
-        source={require("@/assets/images/background.jpg")}
-        className="brightness-80"
-        style={{ position: "absolute", width: "100%", height: "100%" }}
-        contentFit="cover"
-      />
       <View className="flex flex-col gap-1 bg-white p-6 h-full rounded-xl">
         <View className="flex flex-col justify-center items-center">
           <Image
