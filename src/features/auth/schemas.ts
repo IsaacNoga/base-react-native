@@ -7,7 +7,6 @@ export const registroForm = z.object({
 });
 
 export const loginForm = z.object({
-  nombre: z.string().min(2, "Ingrese un nombre válido"),
   correo: z.string().email("Ingrese un correo válido").min(5),
   telefono: z.string().min(10, "Al menos 10 caracteres").max(10),
 });

@@ -1,6 +1,4 @@
 import { Avatar, Button, Col, FormItem, Row } from "@/components";
-import { registroForm } from "@/db/validations/usuario";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Image } from "expo-image";
 import { Coffee, Gift, ShieldAlert, Wallet } from "lucide-react-native";
 import { useForm } from "react-hook-form";
@@ -8,7 +6,6 @@ import { Text, TextInput, View } from "react-native";
 
 export default function RegistroScreen() {
   const { control, handleSubmit } = useForm({
-    resolver: zodResolver(registroForm),
     defaultValues: { nombre: "", correo: "", telefono: "" },
   });
 

@@ -1,9 +1,18 @@
+import { api } from "@/lib/api/client";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { Pressable, Text, TextInput, View } from "react-native";
 
 export default function HomeScreen() {
   const router = useRouter();
+
+  const fetchTest = async () => {
+    const res = await api.get(
+      "pos/cliente/buscar-cliente.json?buscar=6622793384&limite=50",
+    );
+    console.log(res);
+  };
+
   return (
     <View className="flex-col justify-center items-center h-full gap-4 p-6 bg-white">
       <View className="flex flex-col gap-10 justify-center items-center">
@@ -34,7 +43,10 @@ export default function HomeScreen() {
         </View>
       </View>
       <View className="w-full">
-        <Pressable className="bg-teal-400 px-4 py-1.5 rounded-xl w-full active:opacity-80 transition-opacity ease-in-out duration-200">
+        <Pressable
+          className="bg-teal-400 px-4 py-1.5 rounded-xl w-full active:opacity-80 transition-opacity ease-in-out duration-200"
+          onPress={fetchTest}
+        >
           <Text className="text-white font-semibold text-center text-lg">
             Ingresar
           </Text>

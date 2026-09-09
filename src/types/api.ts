@@ -1,13 +1,13 @@
-export interface Respuesta {
+export interface ApiResponse<T = Record<string, any>[]> {
   statusCode: number;
-  paginacion: Paginacion;
-  resultado: Record<string, any>[];
+  paginacion: Pagination;
+  resultado: T;
   detalle: Record<string, any>;
   errores: Record<string, any>;
   mensaje: string;
 }
 
-interface Paginacion {
+export interface Pagination {
   total: number;
   pagina: number;
   limite: number;
