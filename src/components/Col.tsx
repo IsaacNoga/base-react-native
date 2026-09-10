@@ -33,7 +33,7 @@ const normalize = (value?: ColSize) => {
 
 const Col = (props: IColProps) => {
   const {
-    span = 24,
+    span,
     offset = 0,
     xs,
     sm,
@@ -71,13 +71,16 @@ const Col = (props: IColProps) => {
 
   const finalSpan = resolved.span ?? span;
   const finalOffset = resolved.offset ?? offset;
+  const isAuto = finalSpan === undefined;
 
   return (
     <View
       className={className}
       style={[
+        isAuto
+          ? undefined
+          : { width: `${(finalSpan / GRID_COLUMNS) * 100}%` },
         {
-          width: `${(finalSpan / GRID_COLUMNS) * 100}%`,
           marginLeft: finalOffset
             ? `${(finalOffset / GRID_COLUMNS) * 100}%`
             : 0,

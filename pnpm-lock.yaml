@@ -45,7 +45,7 @@ importers:
         specifier: ~57.0.20
         version: 57.0.20(ff90b2a5e9678eceaef19d05dcfbe082)
       expo-secure-store:
-        specifier: ^57.0.3
+        specifier: ~57.0.3
         version: 57.0.3(expo@57.0.21)
       expo-splash-screen:
         specifier: ~57.0.8

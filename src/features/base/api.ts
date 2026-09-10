@@ -7,13 +7,13 @@ export function obtenerModelo(params?: IRequestParams) {
 }
 
 export function crearModelo(body?: Partial<Modelo>) {
-  return api.post("/pedidos.json", body);
+  return api.post("/modelo.json", body);
 }
 
 export function editarModelo(body?: Partial<Modelo>) {
-  return api.put("/pedidos.json", body);
+  return api.put("/modelo.json", body);
 }
 
 export function eliminarModelo(body?: Partial<Modelo>) {
-  return api.delete("/pedidos.json", body);
+  return api.delete("/modelo.json", body);
 }

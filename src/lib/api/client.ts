@@ -1,21 +1,25 @@
 import { ApiResponse, IRequestParams } from "../../types/api";
+import { authStorage } from "../auth/storage";
 import { ApiError } from "./errors";
 
 const API_URL = process.env.EXPO_PUBLIC_API_URL;
 
-async function request<T>(
+async function request<T, D = Record<string, any>>(
   endpoint: string,
   options: RequestInit = {},
-): Promise<ApiResponse<T>> {
+): Promise<ApiResponse<T, D>> {
+  const token = await authStorage.getToken();
+
   const response = await fetch(`${API_URL}${endpoint}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...options.headers,
     },
   });
 
-  const data: ApiResponse<T> = await response.json();
+  const data: ApiResponse<T, D> = await response.json();
 
   if (!response.ok) {
     throw new ApiError(response.status, data.mensaje, data);
@@ -25,7 +29,7 @@ async function request<T>(
 }
 
 export const api = {
-  get<T>(endpoint: string, params?: IRequestParams) {
+  get<T, D = Record<string, any>>(endpoint: string, params?: IRequestParams) {
     const query = params
       ? `?${new URLSearchParams(
           Object.entries(params).reduce(
@@ -41,27 +45,27 @@ export const api = {
         )}`
       : "";
 
-    return request<T>(`${endpoint}${query}`, {
+    return request<T, D>(`${endpoint}${query}`, {
       method: "GET",
     });
   },
 
-  post<T>(endpoint: string, body?: unknown) {
-    return request<T>(endpoint, {
+  post<T, D = Record<string, any>>(endpoint: string, body?: unknown) {
+    return request<T, D>(endpoint, {
       method: "POST",
       body: body ? JSON.stringify(body) : undefined,
     });
   },
 
-  put<T>(endpoint: string, body?: unknown) {
-    return request<T>(endpoint, {
+  put<T, D = Record<string, any>>(endpoint: string, body?: unknown) {
+    return request<T, D>(endpoint, {
       method: "PUT",
       body: body ? JSON.stringify(body) : undefined,
     });
   },
 
-  delete<T>(endpoint: string, body?: unknown) {
-    return request<T>(endpoint, {
+  delete<T, D = Record<string, any>>(endpoint: string, body?: unknown) {
+    return request<T, D>(endpoint, {
       method: "DELETE",
       body: body ? JSON.stringify(body) : undefined,
     });

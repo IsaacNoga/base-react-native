@@ -27,8 +27,8 @@ export default function HomeScreen() {
   const onLogin = handleSubmit(async (data: Login) => {
     setError(null);
     try {
-      await login(data);
-      router.replace("/(app)/index");
+      const res = await login(data);
+      router.replace("/");
     } catch (e) {
       setError(
         e instanceof ApiError

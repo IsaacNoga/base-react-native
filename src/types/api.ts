@@ -1,8 +1,11 @@
-export interface ApiResponse<T = Record<string, any>[]> {
+export interface ApiResponse<
+  T = Record<string, any>[],
+  D = Record<string, any>,
+> {
   statusCode: number;
   paginacion: Pagination;
   resultado: T;
-  detalle: Record<string, any>;
+  detalle: D;
   errores: Record<string, any>;
   mensaje: string;
 }

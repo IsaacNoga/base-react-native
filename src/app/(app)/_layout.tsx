@@ -16,7 +16,7 @@ function DrawerHeader() {
 
   const name = user ? `${user.nombre} ${user.apellidos}` : "Usuario";
   const initials = user
-    ? `${user.nombre.charAt(0) ?? ""}${user.apellidos.charAt(0) ?? ""}`
+    ? `${user.nombre?.charAt(0) ?? ""}${user.apellidos?.charAt(0) ?? ""}`
     : "?";
 
   return (
@@ -67,6 +67,7 @@ export default function MainLayout() {
           options={{
             drawerLabel: route.label,
             title: route.label,
+            headerShown: route.name !== "pedidos",
             drawerIcon: ({ color, size }) => (
               <route.icon color={color} size={size} />
             ),

@@ -8,9 +8,9 @@ export default function Index() {
     <View className="flex-1 p-4 w-full h-full">
       <Row>
         <Col span={24}>
-          <Card>
+          <Card hoverable>
             <Text className="text-2xl font-semibold">
-              Bienvenido {user?.nombre} {user?.apellidos}
+              Bienvenido {user?.nombre ?? ""} {user?.apellidos ?? ""}
             </Text>
           </Card>
         </Col>

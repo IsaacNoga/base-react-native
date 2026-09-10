@@ -28,7 +28,7 @@ function FormItem<T extends FieldValues>({
       name={name}
       control={control}
       render={({ field, fieldState: { error } }) => (
-        <View className="mb-4 w-full">
+        <View className="w-full">
           {label && (
             <View className="flex flex-row justify-between w-full">
               <Text className="mb-1 font-medium text-neutral-800">

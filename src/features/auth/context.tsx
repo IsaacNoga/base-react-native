@@ -27,7 +27,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   const login = async (creds: Login) => {
     const res = await loginMutation.mutateAsync(creds);
-    const user = res.detalle as unknown as User;
+    const user = res.detalle;
     await authStorage.setSession(user.token, user);
     setUser(user);
   };

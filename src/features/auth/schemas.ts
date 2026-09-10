@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 export const ENDPOINTS = {
-  LOGIN: "v1/iniciar-sesion.json",
-  LOGOUT: "v1/cerrar-sesion.json",
+  LOGIN: "crm/iniciar-sesion",
+  LOGOUT: "crm/cerrar-sesion",
 };
 
 export const login = z.object({
